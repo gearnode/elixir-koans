@@ -173,8 +173,18 @@ defmodule KoansTest do
     new_list = [a: 0] ++ list
     # Keys can be given more than once !!!
     # Keyword list is use for create custom DSL
-    assert new_list == [a: 0, a: 0, b: 1]
     assert new_list == [a: 0, a: 1, b: 2]
   end
+
+  test "Maps or Hash in Ruby" do
+    user = %{
+      id: 1,
+      first_name: "John",
+      last_name: "Doe",
+      language: :french
+    }
+
+    assert user[:id] == 1
+    assert user[:language] == :french
   end
 end
