@@ -170,7 +170,7 @@ defmodule KoansTest do
     assert list == [{:a, 1}, {:b, 2}]
     assert list[:a] == 1
 
-    new_list = list ++ [a: 0]
+    new_list = [a: 0] ++ list
     # Keys can be given more than once !!!
     # Keyword list is use for create custom DSL
     assert new_list == [a: 0, a: 0, b: 1]
