@@ -10,4 +10,10 @@ defmodule KoansTest do
 
     assert say_hello.("world") == "hello world"
   end
+
+  test "sum two numbers" do
+    sum = fn (a, b) -> a + b end
+
+    assert sum.(1, 1) == 2
+  end
 end
