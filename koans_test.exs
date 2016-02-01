@@ -153,4 +153,12 @@ defmodule KoansTest do
     return = &(&1)
     assert return.("hello") == "hello"
   end
+
+  test "Tuples functions" do
+    divrem = fn (a, b) -> { div(a, b), rem(a, b) } end
+    assert divrem.(10, 3) == { 3, 1 }
+
+    short_divrem = &{div(&1, &2), rem(&1, &2)}
+    assert short_divrem.(10, 3) == { 3, 1 }
+  end
 end
