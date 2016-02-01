@@ -137,4 +137,11 @@ defmodule KoansTest do
     assert mrs.("Smith") == "Mrs Smith"
     assert prefix.("Elixir").("Rocks") == "Elixir Rocks"
   end
+
+  test "Passing functions as arguments" do
+    time_2 = fn (x) -> x * 2 end
+    apply = fn(func, value) -> func.(value) end
+
+    assert apply.(time_2, 7) == 14
+  end
 end
