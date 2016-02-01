@@ -16,4 +16,10 @@ defmodule KoansTest do
 
     assert sum.(1, 1) == 2
   end
+
+  test "concatenation of two list" do
+    concatenation = fn (list1, list2) -> list1 ++ list2  end
+
+    assert concatenation.([3], [1, 2]) == [3, 1, 2]
+  end
 end
