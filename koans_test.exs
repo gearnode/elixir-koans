@@ -144,4 +144,13 @@ defmodule KoansTest do
 
     assert apply.(time_2, 7) == 14
   end
+
+  test "The & notation" do
+    x = &(&1 * 2 + &2)
+
+    assert x.(7, 1) == 15
+
+    return = &(&1)
+    assert return.("hello") == "hello"
+  end
 end
