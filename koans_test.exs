@@ -163,6 +163,9 @@ defmodule KoansTest do
   end
 
   test "Keyword lists" do
+    # List of tuples
+    # Don't use to store data
+    # Use list of tuples for options parameters
     list = [a: 1, b: 2]
     assert list == [{:a, 1}, {:b, 2}]
     assert list[:a] == 1
