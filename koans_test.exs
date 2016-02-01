@@ -161,4 +161,15 @@ defmodule KoansTest do
     short_divrem = &{div(&1, &2), rem(&1, &2)}
     assert short_divrem.(10, 3) == { 3, 1 }
   end
+
+  test "Keyword lists" do
+    list = [a: 1, b: 2]
+    assert list == [{:a, 1}, {:b, 2}]
+    assert list[:a] == 1
+
+    new_list = list ++ [a: 0]
+    # Keys can be given more than once !!!
+    # Keyword list is use for create custom DSL
+    assert new_list == [a: 0, a: 0, b: 1]
+  end
 end
