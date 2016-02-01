@@ -96,4 +96,17 @@ defmodule KoansTest do
     assert h == 1
   end
 
+  test "FizzBuzz" do
+    fizzbuzz = fn
+        number when rem(number, 3) == 0 and rem(number, 5) == 0 -> "FizzBuzz"
+        number when rem(number, 3) == 0 -> "Fizz"
+        number when rem(number, 5) == 0 -> "Buzz"
+        number -> number
+    end
+
+    assert fizzbuzz.(15) == "FizzBuzz"
+    assert fizzbuzz.(3) == "Fizz"
+    assert fizzbuzz.(5) == "Buzz"
+    assert fizzbuzz.("hello") == "hello"
+  end
 end
