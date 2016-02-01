@@ -125,4 +125,16 @@ defmodule KoansTest do
     x = f.("John")
     assert x.("Emilie") == "Hello Emilie from John"
   end
+
+  test "Parameterized functions" do
+    prefix = fn (the_prefix) ->
+      fn (the_string) ->
+        "#{the_prefix} #{the_string}"
+      end
+    end
+
+    mrs = prefix.("Mrs")
+    assert mrs.("Smith") == "Mrs Smith"
+    assert prefix.("Elixir").("Rocks") == "Elixir Rocks"
+  end
 end
