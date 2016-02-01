@@ -186,5 +186,10 @@ defmodule KoansTest do
 
     assert user[:id] == 1
     assert user[:language] == :french
+    assert user[:something] == nil
+    # Equal fetch on Ruby
+    assert_raise KeyError, fn ->
+      user.something
+    end
   end
 end
