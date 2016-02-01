@@ -22,4 +22,11 @@ defmodule KoansTest do
 
     assert concatenation.([3], [1, 2]) == [3, 1, 2]
   end
+
+  test "is in range" do
+    is_in_range = fn (range, somthing) -> somthing in range end
+
+    assert is_in_range.(1..5, 5) == true
+    assert is_in_range.(1..5, 6) == false
+  end
 end
