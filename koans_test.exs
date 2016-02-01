@@ -67,4 +67,33 @@ defmodule KoansTest do
       [head | tail] = []
     end
   end
+
+  test "adding element begin of list" do
+    a = [1, 2, 3, 4, 5]
+
+    assert [0|a] == [0, 1, 2, 3, 4, 5]
+  end
+
+  test "pin operator" do
+    x = 1
+
+    assert (^x = 1) == 1
+    assert_raise MatchError, fn ->
+      ^x = 0
+    end
+    assert_raise MatchError, fn ->
+      ^x = 2
+    end
+
+    assert_raise MatchError, fn ->
+      {x, x} = {2, 0}
+    end
+  end
+
+  test "unsed var" do
+    [h|_] = [1, 2, 3]
+
+    assert h == 1
+  end
+
 end
