@@ -109,4 +109,20 @@ defmodule KoansTest do
     assert fizzbuzz.(5) == "Buzz"
     assert fizzbuzz.("hello") == "hello"
   end
+
+  test "Function context" do
+    name = "Gearnode"
+    f = fn -> name end
+    name = "World"
+
+    assert f.() == "Gearnode"
+    assert f.() != name
+
+    f = fn (from) ->
+      fn (to) -> "Hello #{to} from #{from}" end
+    end
+
+    x = f.("John")
+    assert x.("Emilie") == "Hello Emilie from John"
+  end
 end
