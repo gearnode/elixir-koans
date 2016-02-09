@@ -5,6 +5,29 @@ defmodule KoansTest do
   # Run unit test on concurrently with other tests
   use ExUnit.Case, async: true
 
+  test "Exercice: Functions-1" do
+    list_concat = fn l1, l2 -> l1 ++ l2 end
+    assert list_concat.([:a, :b], [:c, :d]) == [:a, :b, :c, :d]
+
+    sum = &(&1 + &2)
+    assert sum.(2, 5) == 7
+    
+    pair_tuple_to_list = fn {a, b} -> [a, b] end
+    assert pair_tuple_to_list.({1234, 5678}) == [1234, 5678]
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
