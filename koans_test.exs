@@ -89,6 +89,19 @@ defmodule KoansTest do
     assert apply.(time_2, 7) == 14
   end
 
+  test "The & Notation" do
+    square = &(&1*&1)
+
+    assert square.(4) == 16
+
+    divrem = &{ div(&1, &2), rem(&1, &2) }
+
+    assert divrem.(13, 5) == {2, 3}
+
+    # Other syntax
+    # This same result
+    # &(IO.puts(&1)) == &IO.puts/1
+  end
 
 
 
