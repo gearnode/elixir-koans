@@ -103,6 +103,19 @@ defmodule KoansTest do
     # &(IO.puts(&1)) == &IO.puts/1
   end
 
+  test "Exercice: Functions-5" do
+    list = [1,2,3,4]
+
+    map = fn x -> x + 2 end
+    min_map = &(&1+2)
+
+    assert Enum.map(list, map) == Enum.map(list, min_map)
+
+    each = fn x -> IO.inspect(x) end
+    #min_each = &IO.inspect/1
+
+    #assert Enum.each(list, each) == Enum.each(list, min_each)
+  end
 
 
 
