@@ -355,6 +355,22 @@ defmodule KoansTest do
       order ++ [ total_amount: total_amount ]
     end
   end
+
+  test "Exercise: StringsAndBinaries-1" do
+    defmodule ExerciceModule do
+      def is_printable(letters) do
+        res = for letter <- letters, do: do_is_printable(letter)
+        !Enum.any?(res, fn r -> r === false end)
+      end
+      defp do_is_printable(letters) when letters in 32..126, do: true
+      defp do_is_printable(_), do: false
+    end
+
+    assert ExerciceModule.is_printable('a') === true
+    assert ExerciceModule.is_printable('\n') === false
+    assert ExerciceModule.is_printable('abc') === true
+    assert ExerciceModule.is_printable('a\nc') === false
+  end
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
