@@ -167,6 +167,18 @@ defmodule KoansTest do
 
     assert word |> String.length == String.length(word)
   end
+  test "Module Name is Atom" do
+    assert is_atom IO == true
+    assert to_string IO == "Elixir.IO"
+    assert (:"Elixir.IO" === IO) == true
+    assert :"Elixir.IO".puts "hello" == :ok
+  end
+
+  # 1. :io_lib.format("~.2f", [1.2])
+  # 2. System.get_env "SHLVL"
+  # 3. Path.extname("un_truc.iex")
+  # 4. System.cwd
+  # 5. System.cmd "ls"
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
