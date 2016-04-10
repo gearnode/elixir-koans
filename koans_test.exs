@@ -253,6 +253,65 @@ defmodule KoansTest do
   # updated_post = put_in(post.owner.paid, false)
   # Update with funtion
   # updated_post_2 = update_in(post.owner.name, &("Mr. " <> &1))
+
+  defmodule MyList do
+    def all?([], _func), do: true
+    def all?([ head | tail ], func) do
+      if func.(head) do
+        all?(tail, func)
+      else
+        false
+      end
+    end
+
+    def each([], _func), do: :ok
+    def each([ head | tail ], func) do
+      func.(head)
+      each(tail, func)
+    end
+
+    def take(_, 0), do: []
+    def take([], _), do: []
+    def take([ head | tail ], count) when count > 0 do
+      [ head | take(tail, count-1) ]
+    end
+    def take(list, count) when count < 0 do
+      take(Enum.reverse(list), abs(count))
+    end
+
+    def split(list, 0), do: { [], list }
+    def split([], _), do: { [], [] }
+    def split(list, n) when n < 0, do: split(list, abs(n))
+    def split(list, n) when n > 0, do: do_split(list, [], n)
+
+    defp do_split([], list, _), do: { Enum.reverse(list), []  }
+    defp do_split(list1, list2, 0), do: { Enum.reverse(list2), list1 }
+    defp do_split([ head | tail ], list, count) do
+      do_split(tail, [ head | list ], count-1)
+    end
+
+    def filter([], _func), do: []
+    def filter([ head | tail], func) do
+      if func.(head) do
+        [ head | filter(tail, func) ]
+      else
+        filter(tail, func)
+      end
+    end
+
+    def flatten(list), do: do_flatten(list, [])
+
+    # [[1],2,3]
+    # 
+
+    def do_flatten([ head | tail ], new_list) when is_list(head) do
+      do_flatten(head, do_flatten(tail, new_list))
+    end
+    def do_flatten([ head | tail ], new_list) do
+      [ head | do_flatten(tail, new_list)]
+    end
+    def do_flatten([], new_list), do: new_list
+  end
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
