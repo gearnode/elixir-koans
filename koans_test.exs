@@ -128,6 +128,20 @@ defmodule KoansTest do
     assert Times.quadruple(2) == 8
   end
 
+  defmodule RecurMaths do
+    def sum(0), do: 0
+    def sum(n), do: n + sum(n-1)
+
+    def gcd(x,0), do: x
+    def gcd(x,y), do: gcd(y, rem(x,y))
+  end
+
+  test "Module & Recursion" do
+    assert RecurMaths.sum(0) == 0
+    assert RecurMaths.sum(5) == 15
+    assert RecurMaths.gcd(20,0) == 20
+    assert RecurMaths.gcd(20,15) == 5
+  end
 
 
   test "concatenation of two string" do
