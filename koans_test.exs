@@ -117,6 +117,16 @@ defmodule KoansTest do
     #assert Enum.each(list, each) == Enum.each(list, min_each)
   end
 
+  defmodule Times do
+    def double(n), do: n*2
+    def triple(n), do: n*3
+    def quadruple(n), do: double(n)*2
+  end
+
+  test "Exercie: ModulesAndFunctions-1" do
+    assert Times.triple(3) == 9
+    assert Times.quadruple(2) == 8
+  end
 
 
 
