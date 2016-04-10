@@ -162,6 +162,11 @@ defmodule KoansTest do
     assert Guard.what_is(99) == "99 is number"
   end
 
+  test "The Pipe Operator" do
+    word = "Hello"
+
+    assert word |> String.length == String.length(word)
+  end
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
