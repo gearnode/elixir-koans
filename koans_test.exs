@@ -47,6 +47,16 @@ defmodule KoansTest do
     assert result == ["Buzz", 11, "Fizz", 13, 14, "FizzBuzz", 16]
   end
 
+  test "Function can return functions" do
+    fn1 = fn ->
+      fn ->
+        "Hello"
+      end
+    end
+    other = fn1.()
+
+    assert other.() == "Hello"
+  end
 
 
 
