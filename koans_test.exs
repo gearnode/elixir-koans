@@ -74,6 +74,13 @@ defmodule KoansTest do
     assert add_five.(7) == 12
   end
 
+  test "Exercice: Functions-4" do
+    prefix = fn pre -> fn value -> pre <> " " <> value end end
+    mrs = prefix.("Mrs")
+
+    assert mrs.("Smith") == "Mrs Smith"
+    assert prefix.("Elixir").("Rocks") == "Elixir Rocks"
+  end
 
 
 
