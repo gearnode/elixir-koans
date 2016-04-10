@@ -179,6 +179,59 @@ defmodule KoansTest do
   # 3. Path.extname("un_truc.iex")
   # 4. System.cwd
   # 5. System.cmd "ls"
+
+  defmodule MyList do
+    def len([]), do: 0
+    def len([ _ | tail ]), do: 1 + len(tail)
+
+    def square([]), do: []
+    def square([ head | tail ]), do: [ head*head | square(tail) ]
+
+    def add_1([]), do: []
+    def add_1([ head | tail ]), do: [ head+1 | add_1(tail) ]
+
+    def map([], _func), do: []
+    def map([ head | tail ], func), do: [ func.(head) | map(tail, func) ]
+
+    def sum(list) when is_list([]), do: do_sum(list, 0)
+    defp do_sum([], total), do: total
+    defp do_sum([ head | tail ], total), do: do_sum(tail, total+head)
+
+    def sum2([]), do: 0
+    def sum2([ head | tail ]), do: head + sum(tail)
+
+    def reduce([], value, _), do: value
+    def reduce([ head | tail ], value, func) do
+      reduce(tail, func.(head, value), func)
+    end
+
+    def mapsum([], _), do: 0
+    def mapsum([ head | tail ], func) do
+      func.(head) + mapsum(tail, func)
+    end
+
+    def max([x]), do: x
+    def max([ head | tail ]), do: Kernel.max(head, max(tail))
+  end
+
+  defmodule Swapper do
+    def swap([]), do: []
+    def swap([ a, b | tail ]), do: [ b, a | swap(tail) ]
+    def swap([_]), do: raise "Can't swap this list"
+  end
+
+  defmodule MyList do
+    def span(from, to) do
+      do_span(from, to, 0)
+    end
+
+    defp do_span(from, to, _total) when from > to, do: raise "from can't > to"
+    defp do_span(from, to, total) when from == to, do: total
+    defp do_span(from, to, total) when from < to do
+      do_span(from + 1, to, total + 1)
+    end
+  end
+
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
