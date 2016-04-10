@@ -16,6 +16,15 @@ defmodule KoansTest do
     assert pair_tuple_to_list.({1234, 5678}) == [1234, 5678]
   end
 
+  test "One Function, Multiple Bodies" do
+    handle_open = fn
+      {:ok, file} -> "Read data #{IO.read(file, :line)}"
+      {_, error} -> "Erro: #{:file.format_error(error)}"
+    end
+
+    assert handle_open.(File.open("README.md")) == "Read data # elixir-koans\n"
+    assert handle_open.(File.open("nonexistent")) == "Erro: no such file or directory"
+  end
 
 
 
