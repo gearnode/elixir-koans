@@ -232,6 +232,27 @@ defmodule KoansTest do
     end
   end
 
+  defmodule User do
+    defstruct name: "", age: 0, paid: false
+  end
+
+  # Create
+  # u1 = %User{name: "Gearnode"}
+  # Update
+  # u2 = %User{u1 | name: "Bryan", age: 20}
+
+  defmodule Post do
+    defstruct owner: %{}, active?: false
+  end
+
+  # post = %Post{
+    #   owner: %User{name: "Gearnode", age: 20, paid: true},
+    #   active?: true
+    # }
+  # Update nested argument
+  # updated_post = put_in(post.owner.paid, false)
+  # Update with funtion
+  # updated_post_2 = update_in(post.owner.name, &("Mr. " <> &1))
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
