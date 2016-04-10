@@ -65,6 +65,14 @@ defmodule KoansTest do
     assert john_greeter.() == "John"
   end
 
+  test "Parameterized Functions" do
+    add_n = fn n -> fn other -> n + other end end
+    add_two = add_n.(3)
+    add_five = add_n.(5)
+
+    assert add_two.(2) == 5
+    assert add_five.(7) == 12
+  end
 
 
 
