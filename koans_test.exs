@@ -312,6 +312,9 @@ defmodule KoansTest do
     end
     def do_flatten([], new_list), do: new_list
   end
+  test "The Collectable Protocol" do
+    assert Enum.into(1..7, []) |> Kernel.length == 7
+  end
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
