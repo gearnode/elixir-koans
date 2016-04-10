@@ -371,6 +371,23 @@ defmodule KoansTest do
     assert ExerciceModule.is_printable('abc') === true
     assert ExerciceModule.is_printable('a\nc') === false
   end
+
+  test "Exercise: StringsAndBinaries-2" do
+    defmodule ExerciceModule do
+      def anagram?(word1, word2) when is_list(word1) and is_list(word2), do: word1 == word2
+      def anagram?(word1, word2) when is_list(word1), do: word1 == String.to_char_list(word2)
+      def anagram?(word1, word2) when is_list(word2), do: String.to_char_list(word1) == word2
+      def anagram?(word1, word2), do: String.to_char_list(word1) == String.to_char_list(word2)
+    end
+
+    assert ExerciceModule.anagram?('hello', "hello") == true
+    assert ExerciceModule.anagram?("hello", 'hello') == true
+    assert ExerciceModule.anagram?("hello", "hello") == true
+    assert ExerciceModule.anagram?('hello', 'hello') == true
+    assert ExerciceModule.anagram?('hell1', 'hello') == false
+    assert ExerciceModule.anagram?("hell1", 'hello') == false
+  end
+
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
