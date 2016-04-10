@@ -58,6 +58,12 @@ defmodule KoansTest do
     assert other.() == "Hello"
   end
 
+  test "Functions remenber their original environment" do
+    greeter = fn name -> fn -> "#{name}" end end
+    john_greeter = greeter.("John")
+
+    assert john_greeter.() == "John"
+  end
 
 
 
