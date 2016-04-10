@@ -315,6 +315,28 @@ defmodule KoansTest do
   test "The Collectable Protocol" do
     assert Enum.into(1..7, []) |> Kernel.length == 7
   end
+
+  test "Comprehensions" do
+    res = for x <- Enum.into(1..7, []), do: x + 1
+    assert res == [2,3,4,5,6,7,8]
+
+    multi_res = for num <- Enum.into(1..3, []), bin <- ['q', 'w', 'e'], do: {num, bin}
+    assert multi_res == [{1, 'q'}, {1, 'w'}, {1, 'e'}, {2, 'q'}, {2, 'w'}, {2, 'e'}, {3, 'q'}, {3, 'w'}, {3, 'e'}]
+
+    min_maxes = [{1,4}, {2,3}, {10, 15}]
+    # for every item of list get value a and value b and set range with this both value
+    new_res = for {min, max} <- min_maxes, n <- min..max, do: n
+    assert new_res == [1, 2, 3, 4, 2, 3, 10, 11, 12, 13, 14, 15]
+
+
+    greating_list = for << letter <- "hello" >>, do: << letter >>
+    assert greating_list == ["h", "e", "l", "l", "o"]
+
+    # Change return type
+    for x <- ~w{"elixir", "ruby", "python"}, into: %{}, do: { x, String.upcase(x) }
+    for x <- ~w{"elixir", "ruby", "python"}, into: Map.new, do: { x, String.upcase(x) }
+    assert Map.new == %{}
+  end
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
 
