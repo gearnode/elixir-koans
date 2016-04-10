@@ -26,6 +26,26 @@ defmodule KoansTest do
     assert handle_open.(File.open("nonexistent")) == "Erro: no such file or directory"
   end
 
+  test "Exercice: Functions-2 && Functions-3" do
+    fizzbuzz = fn
+      (0, 0, _) -> "FizzBuzz"
+      (0, _, _) -> "Fizz"
+      (_, 0, _) -> "Buzz"
+      (_, _, a) -> a
+    end
+
+    assert fizzbuzz.(0, 0, 4) == "FizzBuzz"
+    assert fizzbuzz.(0, 'hello', :ok) == "Fizz"
+    assert fizzbuzz.(1.2, 0, [1,2,3]) == "Buzz"
+    assert fizzbuzz.(9, false, 'test') == 'test'
+
+    final_fizzbuzz = fn n ->
+      fizzbuzz.(rem(n, 3), rem(n, 5), n)
+    end
+    result = Enum.map(10..16, final_fizzbuzz)
+
+    assert result == ["Buzz", 11, "Fizz", 13, 14, "FizzBuzz", 16]
+  end
 
 
 
