@@ -143,6 +143,24 @@ defmodule KoansTest do
     assert RecurMaths.gcd(20,15) == 5
   end
 
+  defmodule Guard do
+    def what_is(element) when is_number(element) do
+      "#{element} is number"
+    end
+
+    def what_is(element) when is_atom(element) do
+      "#{element} is atom"
+    end
+
+    def what_is(element) when is_list(element) do
+      "#{element} is list"
+    end
+  end
+
+  test "Guard Clauses" do
+    assert Guard.what_is(:cat) == "cat is atom"
+    assert Guard.what_is(99) == "99 is number"
+  end
 
   test "concatenation of two string" do
     say_hello = fn (name) -> "hello " <> name end
