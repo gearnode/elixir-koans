@@ -82,6 +82,12 @@ defmodule KoansTest do
     assert prefix.("Elixir").("Rocks") == "Elixir Rocks"
   end
 
+  test "Passing Functions As Arguments" do
+    time_2 = fn n -> n * 2 end
+    apply = fn fun, value -> fun.(value) end
+
+    assert apply.(time_2, 7) == 14
+  end
 
 
 
