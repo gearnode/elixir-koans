@@ -481,10 +481,10 @@ defmodule KoansTest do
 
   test "FizzBuzz" do
     fizzbuzz = fn
-        number when rem(number, 3) == 0 and rem(number, 5) == 0 -> "FizzBuzz"
-        number when rem(number, 3) == 0 -> "Fizz"
-        number when rem(number, 5) == 0 -> "Buzz"
-        number -> number
+      number when rem(number, 3) == 0 and rem(number, 5) == 0 -> "FizzBuzz"
+      number when rem(number, 3) == 0 -> "Fizz"
+      number when rem(number, 5) == 0 -> "Buzz"
+      number -> number
     end
 
     assert fizzbuzz.(15) == "FizzBuzz"
